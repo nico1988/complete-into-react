@@ -12,20 +12,20 @@ const SearchParams = () => {
 
   useEffect(() => {
     requestPets();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [location]); // eslint-disable-line react-hooks/exhaustive-deps
 
   async function requestPets() {
     const res = await fetch(
       `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
     );
     const json = await res.json();
-
+    console.log('pets:::', pets);
     setPets(json.pets);
   }
 
   return (
     <div className="search-params">
-      <form>
+      <form style={{ overflow: "auto" }}>
         <label htmlFor="location">
           Location
           <input
@@ -70,14 +70,16 @@ const SearchParams = () => {
         </label>
         <button>Submit</button>
       </form>
-      {pets.map((pet) => (
-        <Pet
-          name={pet.name}
-          animal={pet.animal}
-          breed={pet.breed}
-          key={pet.id}
-        />
-      ))}
+      <div>
+        {pets.map((pet) => (
+          <Pet
+            name={pet.name}
+            animal={pet.animal}
+            breed={pet.breed}
+            key={pet.id}
+          />
+        ))}
+      </div>
     </div>
   );
 };

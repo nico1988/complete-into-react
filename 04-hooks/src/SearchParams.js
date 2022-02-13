@@ -6,11 +6,27 @@ const SearchParams = () => {
   const [animal, updateAnimal] = useState("");
   const [location, updateLocation] = useState("");
   const [breed, updateBreed] = useState("");
+  const [name, updateName] = useState("");
   const breeds = [];
 
   return (
     <div className="search-params">
       <form>
+        <div>
+          <div>animal: {animal}</div>
+          <div>location: {location}</div>
+          <div>breed: {breed}</div>
+          <div>name: {name}</div>
+        </div>
+        <label htmlFor="name">
+          name:
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => updateName(e.target.value)}
+          ></input>
+        </label>
         <label htmlFor="location">
           Location
           <input

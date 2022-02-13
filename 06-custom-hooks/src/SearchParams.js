@@ -9,7 +9,7 @@ const SearchParams = () => {
   const [location, updateLocation] = useState("");
   const [breed, updateBreed] = useState("");
   const [pets, setPets] = useState([]);
-  const [breeds] = useBreedList(animal);
+  const [breeds, status] = useBreedList(animal);
 
   useEffect(() => {
     requestPets();
@@ -26,12 +26,16 @@ const SearchParams = () => {
 
   return (
     <div className="search-params">
-      <form>
+      <form onSubmit={(e) => {
+        console.log('e:::', e)
+        e.preventDefault()
+      }}>
         <label htmlFor="location">
           Location
           <input
             id="location"
             value={location}
+            onCutCapture={e => console.log('e:::', e)}
             placeholder="Location"
             onChange={(e) => updateLocation(e.target.value)}
           />
@@ -69,7 +73,11 @@ const SearchParams = () => {
             ))}
           </select>
         </label>
-        <button>Submit</button>
+        <div>status: {status}</div>
+        <button onClick={(e) => {
+          e.preventDefault()
+          requestPets()
+        }}>Submit</button>
       </form>
       {pets.map((pet) => (
         <Pet
