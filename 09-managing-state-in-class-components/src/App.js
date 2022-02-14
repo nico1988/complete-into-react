@@ -1,4 +1,5 @@
-import { render } from "react-dom";
+import { render, } from "react-dom";
+import { StrictMode } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Details from "./Details";
 import SearchParams from "./SearchParams";
