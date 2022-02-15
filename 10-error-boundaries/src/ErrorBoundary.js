@@ -28,7 +28,7 @@ class ErrorBoundary extends Component {
       );
     }
 
-    return this.props.children;
+    return this.props.children; // if has error render erorr otherwise render children
   }
 }
 
